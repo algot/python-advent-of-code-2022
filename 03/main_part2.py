@@ -10,15 +10,11 @@ def get_inputs(filename: str) -> list:
         return split_list
 
 
-def get_interceptions(lines):
-    result = ''
+def get_badges(lines):
+    result = []
     for line in lines:
-        line_length = len(line)
-        separator_index = line_length // 2
-        left_part, right_part = line[:separator_index], line[separator_index:]
-        interception = ''.join(set(left_part).intersection(right_part))
-        result += interception
-
+        badge = (set(line[0]) & set(line[1]) & set(line[2])).pop()
+        result.append(badge)
     return result
 
 
@@ -29,9 +25,9 @@ def count_priority(char):
 
 def main():
     lines = get_inputs('example_part2.txt')
-    interceptions = get_interceptions(lines)
+    badges = get_badges(lines)
     total = 0
-    for i in interceptions:
+    for i in badges:
         total += count_priority(i)
 
     print(total)
