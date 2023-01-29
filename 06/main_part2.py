@@ -10,17 +10,11 @@ def get_inputs(filename: str) -> list:
 
 def main():
     inputs = get_inputs('example_part2.txt')[0]
+    shift = 14
 
-    result_str = ''
     for i in range(len(inputs)):
-        current_char = inputs[i]
-        result_str += current_char
-
-        if len(result_str) > 3:
-            last_four = result_str[-14:]
-            last_four_set = set(last_four)
-            if len(last_four_set) == 4:
-                return i + 1
+        if len(set(inputs[i:i + shift])) == shift:
+            return (i + shift)
 
 
 if __name__ == '__main__':
